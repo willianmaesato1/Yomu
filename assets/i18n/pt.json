@@ -1,0 +1,58 @@
+{
+  "app": {
+    "name": "Yomu",
+    "welcome_page" : {
+      "title" : "Aproveite o mundo",
+        "subtitle" : "Nós vamos encontrar as melhores experiências\ne aventuras com seus livros"
+    },
+    "fav": {
+      "tab": "Favorites",
+      "title": "Roll a random episode from your favorites",
+      "empty_message": "Search TV show to add in your favorites TV shows",
+      "button_random": "RANDOM"
+    },
+    "details_book": {
+      "enter_comment": "Enter Comment",
+      "button_close": "Close"
+    },
+    "search": {
+      "tab": "Search",
+      "search_bar": "Write a TV show name",
+      "init_message": "Search a TV show in top bar",
+      "error_message": "Oops! Have a error. \nTry verify your internet connection",
+      "empty_message": "Don't have results for this search",
+      "button_fav": "ADD TO FAV",
+      "button_delete": "DELETE",
+      "button_close": "CLOSE"
+    },
+    "loading": {
+      "title": "Choosing a random TV show",
+      "general_error": "Error to get episode. Please try again",
+      "connection_error": "Fail connection. Connect and try again",
+      "button_home": "HOME"
+    },
+    "result": {
+      "title": "This is your random TV show episode!",
+      "button_random": "NEW RANDOM EPISODE",
+      "button_home": "HOME"
+    },
+    "modal": {
+      "description": "Description",
+      "overview": "Overview",
+      "seasons": "Seasons",
+      "season": "Season",
+      "episodes": "Episodes",
+      "episode": "Episode",
+      "duration": "Duration",
+      "undefined": "Undefined",
+      "episode_season_metric": "in all",
+      "duration_metric": "min/episode"
+    },
+    "delete_dialog": {
+      "title": "Delete TV show",
+      "subtitle": "Do you want delete this TV show from your favorites?",
+      "button_cancel": "CANCEL",
+      "button_delete": "DELETE"
+    }
+  }
+}

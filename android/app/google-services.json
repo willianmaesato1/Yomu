@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "762825863764",
+    "firebase_url": "https://yomu-a234a.firebaseio.com",
+    "project_id": "yomu-a234a",
+    "storage_bucket": "yomu-a234a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762825863764:android:5edffc738d81f15573b3c1",
+        "android_client_info": {
+          "package_name": "devtool.com.br.yomu_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762825863764-p214ljedjs77mvrbe8jk8ecgm82q3udm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "devtool.com.br.yomu_app",
+            "certificate_hash": "5f55114e40902049ff32e407dfb446a39d504a2a"
+          }
+        },
+        {
+          "client_id": "762825863764-go9oe3hc8lm28jkl9n8d38rq7734g7ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiNkIcxTw34G6ni4x8JkSLCypNSE5E52E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762825863764-go9oe3hc8lm28jkl9n8d38rq7734g7ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

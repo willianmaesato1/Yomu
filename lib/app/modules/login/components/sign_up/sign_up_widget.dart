@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:yomu_app/app/modules/login/components/sign_up/sign_up_controller.dart';
 import 'package:yomu_app/app/modules/login/login_module.dart';
 
+enum AuthType { facebook, google, twitter }
+
 class SignUpWidget extends StatefulWidget {
   @override
   _SignUpWidgetState createState() => _SignUpWidgetState();
@@ -58,7 +60,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         onEditingComplete: () => _fieldFocusPasswordSignUp.requestFocus(),
       ),
     );
-    final textFieldPAssword = TextFormField(
+    final textFieldPassword = TextFormField(
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       obscureText: true,
@@ -75,91 +77,67 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         icon: Icon(Icons.lock),
       ),
     );
+    final signForm = Expanded(
+      flex: 4,
+      child: Form(
+        key: _formKeySignUp,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              textFieldName,
+              textFieldEmail,
+              textFieldPassword,
+            ],
+          ),
+        ),
+      ),
+    );
+    final signUpButton = Expanded(
+      flex: 1,
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            GestureDetector(
+                child: Observer(
+                  builder: (_) => Container(
+                    width: 50,
+                    height: 50,
+                    padding: EdgeInsets.all(14.0),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                    decoration: BoxDecoration(
+                        color: Colors.blue.withOpacity(0.7),
+                        borderRadius: BorderRadius.circular(50.0)),
+                    child: Center(
+                      child: _signUpController.progressSignUp
+                          ? CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(Colors.white))
+                          : Center(
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              ),
+                            ),
+                    ),
+                  ),
+                ),
+                onTap: () =>
+                    _formKeySignUp.currentState.validate() ??
+                    _signUpController.signUpWithEmail())
+          ],
+        ),
+      ),
+    );
     return Container(
       width: 200,
       height: sizeHeigth - (sizeHeigth / 2.4),
-      padding: const EdgeInsets.only(left: 16, right: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          const Spacer(),
-          Expanded(
-            flex: 4,
-            child: Form(
-              key: _formKeySignUp,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    textFieldName,
-                    textFieldEmail,
-                    textFieldPAssword,
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  /*Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: authTypes.map((authType) {
-                      return SocialButton(
-                        authType: authType,
-                        onPressed: () {
-                          switch (authType) {
-                            case AuthType.facebook:
-                              loginController.loginFacebook(context);
-                              break;
-                            case AuthType.google:
-                              loginController.loginGoogle(context);
-                              break;
-                            case AuthType.twitter:
-                              loginController.loginTwitter(context);
-                              break;
-                          }
-                        },
-                      );
-                    }).toList(),
-                  ),*/
-                  GestureDetector(
-                      child: Observer(
-                        builder: (_) => Container(
-                          width: 50,
-                          height: 50,
-                          padding: EdgeInsets.all(14.0),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 12.0, vertical: 6.0),
-                          decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(0.7),
-                              borderRadius: BorderRadius.circular(50.0)),
-                          child: Center(
-                            child: _signUpController.progressSignUp
-                                ? CircularProgressIndicator(
-                                    valueColor:
-                                        AlwaysStoppedAnimation(Colors.white))
-                                : Center(
-                                    child: Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      ),
-                      onTap: () =>
-                          _formKeySignUp.currentState.validate() ??
-                          _signUpController.signUpWithEmail()),
-                ],
-              ),
-            ),
-          ),
-        ],
+        children: <Widget>[const Spacer(), signForm, signUpButton],
       ),
     );
   }

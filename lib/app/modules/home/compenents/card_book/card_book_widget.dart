@@ -1,14 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CardBookWidget extends StatelessWidget {
-  final widget;
+  final DocumentSnapshot book;
 
-  const CardBookWidget({Key key, this.widget}) : super(key: key);
+  const CardBookWidget({Key key, this.book}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Modular.to.pushNamed("/Book_details", arguments: book),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -19,7 +21,7 @@ class CardBookWidget extends StatelessWidget {
                 Center(child: CircularProgressIndicator()),
                 FadeInImage.assetNetwork(
                   placeholder: 'assets/images/transparent_image.png',
-                  image: widget['image'],
+                  image: book['image'],
                   height: 220,
                   width: 160,
                   fit: BoxFit.cover,

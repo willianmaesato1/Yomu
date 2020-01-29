@@ -5,17 +5,26 @@ part 'sign_up_controller.g.dart';
 class SignUpController = _SignUpBase with _$SignUpController;
 
 abstract class _SignUpBase with Store {
+
   @observable
-  int value = 0;
+  String email;
+
+  @observable
+  String password;
 
   @observable
   bool progressSignUp = false;
 
   @action
-  void increment() {
-    value++;
-  }
+  setPassword(String newPassword) => password = newPassword;
 
   @action
-  void signUpWithEmail(){}
+  setEmail(String newEmail) => email = newEmail;
+
+  @action
+  _setProgressLogin(bool newProgressSignUp) =>
+      progressSignUp = newProgressSignUp;
+
+  @action
+  Future signUpWithEmail() async {}
 }

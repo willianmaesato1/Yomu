@@ -40,8 +40,7 @@ class Usuario {
   static Future<Usuario> get() async {
     /*String json = await Prefs.getString("user.prefs");
     if (json.isEmpty) {
-      return null;
-    }
+      return null;z    }
     Map map = convert.json.decode(json);
     Usuario user = Usuario.fromJson(map);
     return user;*/

@@ -1,12 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
+import 'package:yomu_app/app/model/user.dart';
 
 class SignUpRepository extends Disposable {
-  Future fetchPost(Dio client) async {
-    final response =
-        await client.get('https://jsonplaceholder.typicode.com/posts/1');
-    return response.data;
-  }
 
   //dispose will be called automatically
   @override

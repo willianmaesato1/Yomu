@@ -12,7 +12,7 @@ class LoginModule extends ChildModule {
         Bind((i) => SignUpRepository()),
         Bind((i) => SignInRepository()),
         Bind((i) => SignUpController()),
-        Bind((i) => SignInController()),
+        Bind((i) => SignInController(i.get<SignInRepository>())),
         Bind((i) => LoginController()),
       ];
 

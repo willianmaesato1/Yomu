@@ -32,6 +32,15 @@ dependencies:
   firebase_messaging: ^6.0.9
   cloud_firestore: ^0.13.0+1
 
+  #Facebook
+  flutter_facebook_login: ^3.0.0
+
+  #Google
+  google_sign_in: ^4.1.1
+
+  # Http
+  http: ^0.12.0+2
+
   #Icons
   font_awesome_flutter: ^8.5.0
 

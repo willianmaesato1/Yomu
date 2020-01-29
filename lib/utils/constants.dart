@@ -14,6 +14,9 @@ class Constants{
   static Color lightBG = Colors.white;
   static Color darkBG = Colors.black;
 
+  static const double padding = 8.0;
+  static const double avatarRadius = 66.0;
+
   static ThemeData lightTheme = ThemeData(
     fontFamily: "TimesNewRoman",
     backgroundColor: lightBG,

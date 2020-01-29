@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yomu_app/app/modules/login/components/sign_in/sign_in_controller.dart';
 import 'package:yomu_app/app/modules/login/login_module.dart';
-import 'package:yomu_app/utils/styles.dart';
+import 'package:yomu_app/app/widgets/custom_dialog/custom_dialog_widget.dart';
 
 class SignInWidget extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _SignInWidgetState extends State<SignInWidget> {
   final _fieldFocusEmailSignIn = FocusNode();
   final _fieldFocusPasswordSignIn = FocusNode();
 
-  SignInController _signInController = LoginModule.to.get();
+  SignInController _signInController = LoginModule.to.get<SignInController>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +49,8 @@ class _SignInWidgetState extends State<SignInWidget> {
               style: TextStyle(color: Colors.grey),
             ),
             onTap: () async {
-              /*
-                            await DialogWidget(
-                                icon: Icons.email, context: context)
-                                .dialogContent();*/
+              await CustomDialogWidget(icon: Icons.email, context: context)
+                  .dialogContent();
             },
           ),
         ),
@@ -81,9 +80,25 @@ class _SignInWidgetState extends State<SignInWidget> {
             ),
           ),
         ),
-        onTap: () =>
-            _formKeySignIn.currentState.validate() ??
-            _signInController.loginWithEmail());
+        onTap: () => _formKeySignIn.currentState.validate()
+            ? _signInController.signInWithEmail()
+            : null);
+    final signInForm = Expanded(
+      flex: 3,
+      child: Form(
+        key: _formKeySignIn,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              textFieldEmail,
+              SizedBox(height: 32),
+              textFieldPassword,
+            ],
+          ),
+        ),
+      ),
+    );
+
     return Container(
       width: 200,
       height: sizeHeigth - (sizeHeigth / 2.4),
@@ -92,21 +107,7 @@ class _SignInWidgetState extends State<SignInWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           const Spacer(),
-          Expanded(
-            flex: 3,
-            child: Form(
-              key: _formKeySignIn,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    textFieldEmail,
-                    Padding(padding: DEFAULT_SYMMETRIC_VERTICAL),
-                    textFieldPassword,
-                  ],
-                ),
-              ),
-            ),
-          ),
+          signInForm,
           const Spacer(),
           Expanded(
             flex: 1,
@@ -115,27 +116,44 @@ class _SignInWidgetState extends State<SignInWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  /*Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: authTypes.map((authType) {
-                      return SocialButton(
-                        authType: authType,
-                        onPressed: () {
-                          switch (authType) {
-                            case AuthType.facebook:
-                              loginController.loginFacebook(context);
-                              break;
-                            case AuthType.google:
-                              loginController.loginGoogle(context);
-                              break;
-                            case AuthType.twitter:
-                              loginController.loginTwitter(context);
-                              break;
-                          }
-                        },
-                      );
-                    }).toList(),
-                  ),*/
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () async => await _signInController.signInWithFacebook(),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            FontAwesomeIcons.facebook,
+                            size: 45,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => _signInController.signInWithGoogle(),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            FontAwesomeIcons.googlePlus,
+                            size: 45,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => _signInController.signInWithTwitter(),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            FontAwesomeIcons.twitter,
+                            size: 45,
+                            color: Colors.lightBlueAccent,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                   buttomSignIn,
                 ],
               ),
